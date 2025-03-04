@@ -40,11 +40,11 @@ class RegisterController extends Controller
         }
     }
 
-    
+
 
     public function create()
     {
-        // Logic to show the staff registration form
+        return view('backend.admin.layouts.staff_register.create');
     }
 
     public function store(Request $request)

@@ -5,7 +5,9 @@
 <script src="{{ asset('backend/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
 <script src="{{ asset('backend/js/plugins.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <!--datatable js-->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -20,12 +22,21 @@
 
 <script src="{{ asset('backend/js/pages/datatables.init.js') }}"></script>
 <!-- App js -->
-<script src="{{ asset('backend/js/app.js') }}"></script>
 
 {{-- sweetalert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="{{ asset('backend/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+
+<!-- quill js -->
+<script src="{{ asset('backend/libs/quill/quill.min.js') }}"></script>
+
+<!-- init js -->
+<script src="{{ asset('backend/js/pages/form-editor.init.js') }}"></script>
+
+<script src="{{ asset('backend/js/app.js') }}"></script>
 
 <script>
     $(document).ready(function() {

@@ -1,68 +1,69 @@
 @extends('backend.admin.app')
 @section('title', 'Staff Register')
 @section('content')
-<div class="main-content">
+    <div class="main-content">
 
-    <div class="page-content">
-        <div class="container-fluid">
+        <div class="page-content">
+            <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                        <h4 class="mb-sm-0">Staff Register</h4>
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div
+                            class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                            <h4 class="mb-sm-0">Staff Register</h4>
 
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Staff Registers</li>
-                            </ol>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Staff Registers</li>
+                                </ol>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-            <!-- end page title -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <h5 class="card-title mb-0 flex-grow-1">Staff Registers List</h5>
-                            <div>
-                                <button class="btn btn-primary"><i class="ri-add-line align-middle me-1"></i> Add</button>
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center">
+                                <h5 class="card-title mb-0 flex-grow-1">Staff Registers List</h5>
+                                <div>
+                                    <button class="btn btn-primary"><i class="ri-add-line align-middle me-1"></i> Add
+                                        Staff</button>
+                                </div>
+                            </div>
+
+                            <div class="card-body table-responsive">
+                                <table id="data-table" class="table align-middle mb-0" style="width:100%">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Address</th>
+                                            <th>Avatar</th>
+                                            <th>Specialization</th>
+                                            <th>Salary</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        
-                        <div class="card-body table-responsive">
-                            <table id="data-table" class="table align-middle mb-0" style="width:100%">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                        <th>Avatar</th>
-                                        <th>Specialization</th>
-                                        <th>Salary</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div><!--end col-->
-            </div><!--end row-->
+                    </div><!--end col-->
+                </div><!--end row-->
 
+            </div>
+            <!-- container-fluid -->
         </div>
-        <!-- container-fluid -->
+        <!-- End Page-content -->
     </div>
-    <!-- End Page-content -->
-</div>
 @endsection
 @push('script')
-   
     <script>
         $(document).ready(function() {
             var searchable = [];
@@ -86,7 +87,7 @@
                     serverSide: true,
 
                     language: {
-                       
+
                         lengthMenu: '_MENU_',
                         search: '',
                         searchPlaceholder: 'Search..'
@@ -109,7 +110,7 @@
                             orderable: false,
                             searchable: false
                         },
-                       
+
                         {
                             data: 'name',
                             name: 'name',
@@ -134,7 +135,7 @@
                             orderable: false,
                             searchable: false
                         },
-                       
+
                         {
                             data: 'specialization',
                             name: 'specialization',
@@ -161,6 +162,5 @@
                 });
             }
         });
-
     </script>
 @endpush
