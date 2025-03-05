@@ -1,5 +1,5 @@
 @extends('backend.admin.app')
-@section('title', 'Staff Register')
+@section('title', 'Admin Dashboard | Staff Register')
 @section('content')
     <div class="main-content">
 

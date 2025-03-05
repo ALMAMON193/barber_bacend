@@ -21,7 +21,7 @@
         <!-- ========== Header End ========== -->
 
         <!-- ========== App Menu ========== -->
-        @include('backend.admin.partials.nav')
+        @include('backend.admin.partials.sidebar')
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
