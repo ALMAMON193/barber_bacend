@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Web\Backend\Staff;
 
 use Exception;
 use App\Models\User;
-use Illuminate\Support\Str;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StaffRegisterRequest;
+
 
 class RegisterController extends Controller
 {
@@ -19,56 +22,118 @@ class RegisterController extends Controller
                 $data = User::where('role', 'staff')->get();
                 return DataTables::of($data)
                     ->addIndexColumn()
-
-                    ->addColumn('bio', function ($data) {
-                        // Strip HTML tags and truncate the content
-                        $bio = strip_tags($data->bio);
-                        return Str::limit($bio, 100);
+                    ->editColumn('address', function ($data) {
+                        return $data->address ?? 'N/A';
+                    })
+                    ->addColumn('avatar', function ($data) {
+                        $url = asset($data->avatar ?? 'backend/images/no-image.png');
+                        return '<img src="' . $url . '" alt="image" class="img-fluid" height="40px" width="40px">';
+                    })
+                    ->editColumn('specialization', function ($data) {
+                        return $data->specialization ?? 'N/A';
+                    })
+                    ->editColumn('salary', function ($data) {
+                        return $data->salary ?? 'N/A';
+                    })
+                    ->editColumn('phone', function ($data) {
+                        return $data->phone ?? 'N/A';
+                    })
+                    ->editColumn('role', function ($data) {
+                        return $data->role ?? 'N/A';
+                    })
+                    ->editColumn('dob', function ($data) {
+                        return $data->dob ?? 'N/A';
                     })
                     ->addColumn('action', function ($data) {
-                        return '<a href="" class="btn btn-primary btn-sm"><i class="ri-eye-line"></i></a>
-                        <a href="" class="btn btn-warning btn-sm"><i class="ri-edit-2-line"></i></a>
-                        <a href="" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure you want to delete this staff?\')"><i class="ri-delete-bin-line"></i></a>';
+                        return '<a href="' . route('admin.staff.register.view', $data->id) . '" class="btn btn-primary btn-sm"><i class="ri-eye-line"></i> View</a>
+                        <a href="' . route('admin.staff.register.edit', $data->id) . '" class="btn btn-warning btn-sm"><i class="ri-edit-2-line"></i> Edit</a>
+                        <a href="#" onclick="deleteAlert(' . $data->id . ')" class="btn btn-danger btn-sm"><i class="ri-delete-bin-line" id="custom-sa-warning"></i> Delete</a>';
                     })
-                    ->rawColumns(['image', 'bio', 'action'])
+                    ->rawColumns(['avatar', 'action'])
                     ->make(true);
             }
             return view('backend.admin.layouts.staff_register.index');
         } catch (Exception $e) {
             Log::error($e->getMessage());
-            return redirect()->back()->with('t-error', 'Something went wrong! Please try again.');
+            return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
-
-
-
     public function create()
     {
         return view('backend.admin.layouts.staff_register.create');
     }
-
-    public function store(Request $request)
+    public function store(StaffRegisterRequest $request)
     {
-        // Logic to store the new staff data
+        $validated = $request->validated();
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $validated['role'],
+            'salary' => $validated['salary'],
+        ]);
+        return redirect()->route('admin.staff.register.index')->with('success', 'Staff created successfully!');
     }
+
+
 
     public function edit($id)
     {
-        // Logic to show the staff edit form
+        $staffedit = User::find($id);
+        return view('backend.admin.layouts.staff_register.edit', compact('staffedit'));
     }
 
     public function update(Request $request, $id)
     {
-        // Logic to update the staff data
+        $request->validate([
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'nullable|string|in:admin,staff,customer',
+            'salary' => 'nullable|numeric',
+        ]);
+        $staffedit = User::find($id);
+        // Update Name
+        $staffedit->name = $request->input('name', $staffedit->name);
+        // Update Email if provided and it's unique
+        if ($request->has('email') && $request->input('email') !== $staffedit->email) {
+            $staffedit->email = $request->input('email');
+        }
+        // Update Password if provided
+        if ($request->has('password') && $request->input('password') !== '') {
+            $staffedit->password = Hash::make($request->input('password'));
+        }
+        // Update Role if provided
+        $staffedit->role = $request->input('role', $staffedit->role);
+        // Update Salary if provided
+        $staffedit->salary = $request->input('salary', $staffedit->salary);
+        // Save the changes
+        $staffedit->save();
+
+        return redirect()->route('admin.staff.register.index')->with('success', 'Staff updated successfully!');
     }
+
 
     public function destroy($id)
     {
-        // Logic to delete the staff
+        $staffdelete = User::find($id);
+
+        if (!$staffdelete) {
+            return redirect()->route('admin.staff.register.index')->with('error', 'Staff not found!');
+        }
+        if ($staffdelete->avatar) {
+            Helper::fileDelete($staffdelete->avatar);
+        }
+
+        $staffdelete->delete();
+
+        return response()->json(['t-success' => true, 'message' => 'Data Deleted successfully.']);
     }
 
-    public function show($id)
+    public function view($id)
     {
-        // Logic to show a single staff's details
+        $staffview = User::find($id);
+        return view('backend.admin.layouts.staff_register.view', compact('staffview'));
     }
 }

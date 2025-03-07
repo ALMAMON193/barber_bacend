@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+
 <head>
     <meta charset="utf-8">
     <title>@yield('title') | {{ config('app.name') }}</title>
@@ -38,5 +40,5 @@
     <!-- JAVASCRIPT -->
     @include('backend.admin.partials.script')
 </body>
-</html>
 
+</html>

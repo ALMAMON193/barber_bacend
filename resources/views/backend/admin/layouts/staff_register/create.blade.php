@@ -84,67 +84,37 @@
                                             </div>
                                         </div>
 
-                                        <!-- Role field (optional) -->
+                                        <!-- Confirm Password field is required -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="password_confirmationInput" class="form-label">Confirm
+                                                    Password</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="password"
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    id="password_confirmationInput" name="password_confirmation"
+                                                    placeholder="Enter your confirm password" />
+                                                @error('password_confirmation')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Role field  -->
                                         <div class="row mb-3">
                                             <div class="col-lg-3">
                                                 <label for="roleInput" class="form-label">Role <span
-                                                        class="text-muted">(Optional)</span></label>
+                                                        class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <select class="form-select @error('role') is-invalid @enderror"
+                                                <select class="form-select @error('role') is-invalid @enderror" required
                                                     id="roleInput" name="role">
                                                     <option value="admin">Admin</option>
                                                     <option value="staff">Staff</option>
                                                     <option value="customer">Customer</option>
                                                 </select>
                                                 @error('role')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <!-- Address field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="addressInput" class="form-label">Address <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <textarea class="form-control @error('address') is-invalid @enderror" id="addressInput" name="address" rows="3"
-                                                    placeholder="Enter your address"></textarea>
-                                                @error('address')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <!-- Avatar field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="avatarInput" class="form-label">Avatar <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="file"
-                                                    class="form-control @error('avatar') is-invalid @enderror"
-                                                    id="avatarInput" name="avatar" />
-                                                @error('avatar')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <!-- Date of Birth field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="dobInput" class="form-label">Date of Birth <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="date"
-                                                    class="form-control @error('dob') is-invalid @enderror" id="dobInput"
-                                                    name="dob" />
-                                                @error('dob')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -165,72 +135,9 @@
                                                 @enderror
                                             </div>
                                         </div>
-
-                                        <!-- Specialization field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="specializationInput" class="form-label">Specialization <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="text"
-                                                    class="form-control @error('specialization') is-invalid @enderror"
-                                                    id="specializationInput" name="specialization"
-                                                    placeholder="Enter your specialization" />
-                                                @error('specialization')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary">Add Leave</button>
                                         </div>
-
-                                        <!-- Phone field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="phoneInput" class="form-label">Phone <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="text"
-                                                    class="form-control @error('phone') is-invalid @enderror"
-                                                    id="phoneInput" name="phone" placeholder="Enter your phone" />
-                                                @error('phone')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <!-- Bio field (optional) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="bioInput" class="form-label">Bio <span
-                                                        class="text-muted">(Optional)</span></label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <textarea class="form-control @error('bio') is-invalid @enderror" id="bioInput" name="bio" rows="3"
-                                                    placeholder="Enter your bio"></textarea>
-                                                @error('bio')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
-                                        <!-- Status field (required) -->
-                                        <div class="row mb-3">
-                                            <div class="col-lg-3">
-                                                <label for="statusInput" class="form-label">Status</label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <select class="form-select @error('status') is-invalid @enderror"
-                                                    id="statusInput" name="status">
-                                                    <option value="active">Active</option>
-                                                    <option value="inactive">Inactive</option>
-                                                </select>
-                                                @error('status')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-
                                     </form>
                                 </div>
                             </div>
@@ -239,24 +146,7 @@
                     <!--end row-->
                 </div>
                 <!-- End Page-content -->
-
-
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>2025 © Velzon.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design &amp; Develop by Themesbrand
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
-
-        @endsection
+        </div>
+    </div>
+@endsection

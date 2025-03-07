@@ -1,91 +1,167 @@
-@extends('backend.app')
-
-@section('title', 'Edit Category')
-
-@push('style')
-    <style>
-        .ck-editor__editable_inline {
-            min-height: 200px;
-        }
-
-        .dropify-wrapper {
-            background-color: #f5f8fa;
-            /* Light background */
-            border: 2px dashed #007bff;
-            /* Custom border */
-            border-radius: 15px;
-            /* Rounded corners */
-            transition: all 0.3s ease;
-        }
-
-        .dropify-wrapper:hover {
-            border-color: #0056b3;
-            /* Darker border on hover */
-            background-color: #e6f7ff;
-            /* Change background on hover */
-        }
-
-        .dropify-wrapper .dropify-message {
-            font-family: 'Arial', sans-serif;
-            color: #333;
-        }
-
-        .dropify-wrapper .dropify-message p {
-            font-size: 18px;
-            /* Larger font */
-            margin: 10px 0;
-        }
-
-        .dropify-wrapper .dropify-preview .dropify-render img {
-            max-width: 100%;
-            /* Responsive image */
-            border-radius: 10px;
-        }
-    </style>
-@endpush
-
+@extends('backend.admin.app')
+@section('title', 'Admin Dashboard | Edit Staff')
 @section('content')
+    <div class="main-content">
 
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Edit Category</h4>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <form action="{{ route('admin.category.update', $category->id) }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="form-group">
-                                        <label for="name" class="form-label">Title <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            name="name" id="name" placeholder="Enter Name here...."
-                                            value="{{ old('name', $category->name) }}">
-                                        @error('name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary me-2">Update</button>
-                                        <button type="reset" class="btn btn-outline-secondary"
-                                            onclick="resetForm()">Cancel
-                                        </button>
-                                    </div>
-                                </form>
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div
+                            class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                            <h4 class="mb-sm-0">Edit Staff Information</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Staff</a></li>
+                                    <li class="breadcrumb-item active">Edit Staff</li>
+                                </ol>
                             </div>
-                            <!-- /Account -->
+
                         </div>
                     </div>
                 </div>
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Edit Staff</h4>
+                            </div><!-- end card header -->
+                            <div class="card-body">
+                                <p class="text-muted"> Update the form below with the correct information. Fields marked
+                                    with * are required.</p>
+                                <div class="live-preview">
+                                    <form action="{{ route('admin.staff.register.update', $staffedit->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <!-- Name field is required -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="nameInput" class="form-label">Name</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text"
+                                                    class="form-control @error('name') is-invalid @enderror" id="nameInput"
+                                                    name="name" value="{{ old('name', $staffedit->name) }}"
+                                                    placeholder="Enter your name" autofocus />
+                                                @error('name')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Email field is required -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="emailInput" class="form-label">Email</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    id="emailInput" name="email"
+                                                    value="{{ old('email', $staffedit->email) }}"
+                                                    placeholder="Enter your email" />
+                                                @error('email')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Password field (leave blank to keep current password) -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="passwordInput" class="form-label">Password</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text"
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    id="passwordInput" value="{{ old('password') ?? $staffedit->password }}"
+                                                    name="password" placeholder="Enter a new password" />
+                                                @error('password')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Confirm Password field (leave blank to keep current password) -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="password_confirmationInput" class="form-label">Confirm
+                                                    Password</label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="text"
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                    id="password_confirmationInput" name="password_confirmation"
+                                                    value="{{ old('password_confirmation') ?? $staffedit->password }}"
+                                                    placeholder="Confirm password" />
+                                                @error('password_confirmation')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Role field -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="roleInput" class="form-label">Role <span
+                                                        class="text-muted">(Optional)</span></label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <select class="form-select @error('role') is-invalid @enderror"
+                                                    id="roleInput" name="role">
+                                                    <option value="admin"
+                                                        {{ old('role', $staffedit->role) == 'admin' ? 'selected' : '' }}>
+                                                        Admin</option>
+                                                    <option value="staff"
+                                                        {{ old('role', $staffedit->role) == 'staff' ? 'selected' : '' }}>
+                                                        Staff</option>
+                                                    <option value="customer"
+                                                        {{ old('role', $staffedit->role) == 'customer' ? 'selected' : '' }}>
+                                                        Customer</option>
+
+                                                </select>
+                                                @error('role')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <!-- Salary field -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-3">
+                                                <label for="salaryInput" class="form-label">Salary <span
+                                                        class="text-muted">(Optional)</span></label>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <input type="number"
+                                                    class="form-control @error('salary') is-invalid @enderror"
+                                                    id="salaryInput" name="salary"
+                                                    value="{{ old('salary', $staffedit->salary) }}"
+                                                    placeholder="Enter your salary" />
+                                                @error('salary')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary">Update Staff</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+                <!-- End Page-content -->
             </div>
         </div>
     </div>
 
 @endsection
-
-@push('script')
-
-@endpush

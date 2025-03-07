@@ -26,10 +26,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/staff/registers', [RegisterController::class, 'index'])->name('admin.staff.register.index');
 Route::get('/admin/staff/registers/create', [RegisterController::class, 'create'])->name('admin.staff.register.create');
 Route::post('/admin/staff/registers', [RegisterController::class, 'store'])->name('admin.staff.register.store');
-Route::get('/admin/staff/registers/{id}', [RegisterController::class, 'show'])->name('admin.staff.register.show');
+Route::get('/admin/staff/registers/{id}/view', [RegisterController::class, 'view'])->name('admin.staff.register.view');
 Route::get('/admin/staff/registers/{id}/edit', [RegisterController::class, 'edit'])->name('admin.staff.register.edit');
 Route::put('/admin/staff/registers/{id}', [RegisterController::class, 'update'])->name('admin.staff.register.update');
-Route::delete('/admin/staff/registers/{id}', [RegisterController::class, 'destroy'])->name('admin.staff.register.destroy');
+Route::delete('admin/staff/registers/delete/{id}', [RegisterController::class, 'destroy'])->name('admin.staff.register.destroy');
+
 
 
 
