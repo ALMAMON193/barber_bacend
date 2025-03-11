@@ -47,7 +47,6 @@
                                             <th>Email</th>
                                             <th>Address</th>
                                             <th>Avatar</th>
-                                            <th>Specialization</th>
                                             <th>Salary</th>
                                             <th>Phone</th>
                                             <th>Role</th>
@@ -162,12 +161,6 @@
                             name: 'avatar',
                             orderable: false,
                             searchable: false
-                        },
-                        {
-                            data: 'specialization',
-                            name: 'specialization',
-                            orderable: true,
-                            searchable: true
                         },
                         {
                             data: 'salary',

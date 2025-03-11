@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\Backend\Admin\ServiceImageController;
 use App\Http\Controllers\Web\Backend\AdminController;
 use App\Http\Controllers\Web\Backend\StaffController;
 use App\Http\Controllers\Web\Backend\CustomerController;
@@ -30,6 +31,16 @@ Route::get('/admin/staff/registers/{id}/view', [RegisterController::class, 'view
 Route::get('/admin/staff/registers/{id}/edit', [RegisterController::class, 'edit'])->name('admin.staff.register.edit');
 Route::put('/admin/staff/registers/{id}', [RegisterController::class, 'update'])->name('admin.staff.register.update');
 Route::delete('admin/staff/registers/delete/{id}', [RegisterController::class, 'destroy'])->name('admin.staff.register.destroy');
+
+// admin services images routes
+
+Route::get('/admin/service/images', [ServiceImageController::class, 'index'])->name('admin.service.image.index');
+Route::get('/admin/service/image/create', [ServiceImageController::class, 'create'])->name('admin.service.image.create');
+Route::post('/admin/service/image/', [ServiceImageController::class, 'store'])->name('admin.service.image.store');
+Route::get('/admin/service/image/{id}/view', [ServiceImageController::class, 'view'])->name('admin.service.image.view');
+Route::get('/admin/service/image/{id}/edit', [ServiceImageController::class, 'edit'])->name('admin.service.image.edit');
+Route::put('/admin/service/image/{id}', [ServiceImageController::class, 'update'])->name('admin.service.image.update');
+Route::delete('admin/service/image/delete/{id}', [ServiceImageController::class, 'destroy'])->name('admin.service.image.destroy');
 
 
 

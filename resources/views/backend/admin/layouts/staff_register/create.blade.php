@@ -33,7 +33,6 @@
                             <div class="card-body">
                                 <p class="text-muted"> Create an horizontal form with labels on top.Fill all information
                                     below</p>
-                                <div class="live-preview">
                                     <form action="{{ route('admin.staff.register.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf

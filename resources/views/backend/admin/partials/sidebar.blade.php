@@ -129,7 +129,7 @@
                         </ul>
                     </div>
                 </li>
-                {{-- staff management --}}
+                {{-- staff account management --}}
                 <li class="nav-item {{ request()->routeIs('admin.staff.register.*') ? 'active' : '' }}">
                     <a class="nav-link menu-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarMaps">
@@ -155,6 +155,33 @@
                         </ul>
                     </div>
                 </li>
+                {{-- Services Image start --}}
+                <li class="nav-item {{ request()->routeIs('admin.service.image.*') ? 'active' : '' }}">
+                    <a class="nav-link menu-link" href="#sidebarServiceImages" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarMaps">
+                        <i class="ri-file-image-line"></i> <span data-key="t-maps">Services Images</span>
+                    </a>
+                    <div class="collapse menu-dropdown {{ request()->routeIs('admin.service.image.*') ? 'show' : '' }}"
+                        id="sidebarServiceImages">
+                        <ul class="nav nav-sm flex-column">
+                            <li
+                                class="nav-item {{ request()->routeIs('admin.service.image.create') ? 'active' : '' }}">
+                                <a href="{{ route('admin.service.image.create') }}" class="nav-link"
+                                    data-key="t-google">
+                                    Add Image
+                                </a>
+                            </li>
+                            <li
+                                class="nav-item {{ request()->routeIs('admin.service.image.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.service.image.index') }}" class="nav-link"
+                                    data-key="t-vector">
+                                    All Images
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- services image end --}}
 
             </ul>
         </div>

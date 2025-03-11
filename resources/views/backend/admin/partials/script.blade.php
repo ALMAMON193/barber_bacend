@@ -25,18 +25,25 @@
 
 {{-- sweetalert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 <script src="{{ asset('backend/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-
 <!-- quill js -->
 <script src="{{ asset('backend/libs/quill/quill.min.js') }}"></script>
-
 <!-- init js -->
 <script src="{{ asset('backend/js/pages/form-editor.init.js') }}"></script>
-
 <script src="{{ asset('backend/js/app.js') }}"></script>
+
+<!-- file upload js-->
+    <!-- dropzone min -->
+    <script src="{{ asset('backend/libs/dropzone/dropzone-min.js') }}"></script>
+    <!-- filepond js -->
+    <script src="{{ asset('backend/libs/filepond/filepond.min.js') }}"></script>
+    <script src="{{ asset('backend/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('backend/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') }}"></script>
+    <script src="{{ asset('backend/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') }}"></script>
+    <script src="{{ asset('backend/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js') }}"></script>
+
+    <script src="{{ asset('backend/js/pages/form-file-upload.init.js') }}"></script>
 
 <script>
     $(document).ready(function() {
