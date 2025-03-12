@@ -26,5 +26,6 @@
             <a href="" class="py-2 btn btn-primary rounded-0 px-lg-4 d-none d-lg-block ms-4 wow fadeInUp"
                 data-wow-delay="0.5s">Learn More</a>
         </div>
+
     </div>
 </div>
