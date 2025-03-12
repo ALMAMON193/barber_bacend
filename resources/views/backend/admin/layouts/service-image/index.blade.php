@@ -15,7 +15,7 @@
                                 <h4 class="mb-sm-0">Gallery</h4>
 
                                 <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
+                                    <ol class="m-0 breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript: void(0);">Pages</a></li>
                                         <li class="breadcrumb-item active">Gallery</li>
                                     </ol>
@@ -28,34 +28,36 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="">
-                                <div class="card-body px-1">
+                                <div class="px-1 card-body">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="row gallery-wrapper">
                                                 <!-- end col -->
                                                 @foreach ($services_images as $item)
-                                                <div class="element-item col-xxl-3 col-xl-4 col-sm-6 photography"
-                                                    data-category="photography">
-                                                    <div class="gallery-box card">
-                                                            <div class="gallery-container">
-                                                            <a class="image-popup"
-                                                                href=""
-                                                                title="">
-                                                                <img class="gallery-img img-fluid mx-auto"
-                                                                    src="{{ asset('backend/images/no-image.png') }}"
-                                                                    alt="" />
-                                                                <div class="gallery-overlay">
-                                                                    <h5 class="overlay-caption">{{ $item->services->name ?? '' }}
-                                                                    </h5>
-                                                                </div>
-                                                            </a>
+                                                    <div class="element-item col-xxl-3 col-xl-4 col-sm-6 photography"
+                                                        data-category="photography">
+                                                        <div class="gallery-box card">
+                                                            <div class="gallery-container" style="border: 1px solid #ccc;">
+                                                                <a class="image-popup" href="" title="">
+                                                                    <img class="mx-auto gallery-img img-fluid"
+                                                                        style="height: 200px;"
+                                                                        src="{{ asset($item->image_path ?? 'backend/images/no-image.png') }}"
+                                                                        alt="" />
+                                                                    <div class="gallery-overlay">
+                                                                        <h5 class="overlay-caption">
+                                                                            {{ $item->services->name ?? '' }}
+                                                                        </h5>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
                                                         </div>
+
                                                     </div>
-                                                </div>
-                                                <!-- end col -->
+                                                    <!-- end col -->
                                                 @endforeach
                                             </div>
                                             <!-- end row -->
+
                                         </div>
                                     </div>
                                     <!-- end row -->
