@@ -7,7 +7,7 @@
                     <div class="flex-shrink-0 btn-square bg-dark me-3">
                         <span class="fa fa-map-marker-alt text-primary"></span>
                     </div>
-                    <span>123 Street, New York, USA</span>
+                    <span>Dhaka, Bangladesh</span>
                 </div>
                 <div class="mb-2 d-flex align-items-center">
                     <div class="flex-shrink-0 btn-square bg-dark me-3">
@@ -24,9 +24,9 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <h4 class="mb-4 text-uppercase">Quick Links</h4>
-                <a class="btn btn-link" href="">About Us</a>
-                <a class="btn btn-link" href="">Contact Us</a>
-                <a class="btn btn-link" href="">Our Services</a>
+                <a class="btn btn-link" href="{{ route('about') }}">About Us</a>
+                <a class="btn btn-link" href="{{ route('contact') }}">Contact Us</a>
+                <a class="btn btn-link" href="{{ route('services') }}">Our Services</a>
                 <a class="btn btn-link" href="">Terms & Condition</a>
                 <a class="btn btn-link" href="">Support</a>
             </div>
@@ -54,11 +54,10 @@
         <div class="copyright">
             <div class="row">
                 <div class="mb-3 text-center col-md-6 text-md-start mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="#">{{ config('app.name') }}</a>, All Right Reserved.
                 </div>
                 <div class="text-center col-md-6 text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    Developed By <a class="border-bottom" href="https://htmlcodex.com">Al Mamon</a>
                 </div>
             </div>
         </div>
